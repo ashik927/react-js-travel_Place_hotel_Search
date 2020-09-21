@@ -1,0 +1,25 @@
+.shop-container{
+    display: flex;
+}
+.product-container{
+    width: 70%;
+    margin-left: 20px;
+    margin-right: 5px;
+    border-right: 1px solid lightgreen;
+    text-align: center;
+}
+.cart-container{
+    width: 30%;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .flex-container > div {
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+ }
