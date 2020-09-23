@@ -2,7 +2,7 @@ var allplace = [
     {  
         id: "1C",
         name : "COX'S BAZAR",
-        img:"https://i.ibb.co/FnVQjQ1/Rectangle-1.png",
+        img:"https://i.ibb.co/Lgwd2Cp/Sajek.png",
        description : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia corporis consequatur cupiditate sit officia fuga doloribus saepe velit pariatur quam. Ut recusandae rem ab quod!"
     },
     {

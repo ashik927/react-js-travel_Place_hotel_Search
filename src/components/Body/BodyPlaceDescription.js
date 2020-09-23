@@ -11,7 +11,7 @@ const BodyPlaceDescription = (props) => {
                         <p>{description}</p>
                         <Link to={"/startbooking/"+id}>
                         {
-                            name && <Button variant="outline-primary">Booking</Button>
+                            name && <Button className="btn-block z-depth-1a">Booking</Button>
                         }
                         </Link>
           </Col>

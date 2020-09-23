@@ -15,7 +15,7 @@
       
 }
 .nav{
-    margin-left: 200px;
+    margin-left: 0px;
     margin-top: 30px;
 }
 .nav li{
@@ -33,13 +33,13 @@
     width:120px;  
     border-radius: 18px;
   }
-  .form{
-      margin-top: -17px;
+  .form1{
+      margin-top: -25px;
       margin-left: 15px;
   }
   .one{
-      margin-left:-35px;
-      margin-top: 10px;
+      margin-left:-12px;
+      margin-top: -5px;
   }
   .body-margin{
       margin-top:100px;

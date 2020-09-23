@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useContext, useState } from 'react';
 import { Button, Card, CardDeck, Col, Container, Row } from 'react-bootstrap';
 import touristpalace from '../../touristpalace';
 import { Link, useParams  } from 'react-router-dom';
@@ -6,12 +6,18 @@ import { useForm } from 'react-hook-form';
 import './StartBooking.css';
 import DatePicker from "react-datepicker";
 import HotelDetails from '../HotelDetails/HotelDetails';
+import { userContext } from '../../App';
  
 
 
 const StartBooking = () => {
+    // const [startAllDate,setStartAllDate] = useContext(userContext);
+    // const [endAllDate,setEndAllDate] = useContext(userContext);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    // setStartAllDate(startDate);
+    // setEndAllDate(endDate);
+    
     // const [data , setData] = useState({});
     let {id} = useParams();
     let description = touristpalace.find(key=>key.id === id);

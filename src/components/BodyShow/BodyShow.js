@@ -5,10 +5,10 @@ const BodyShow = (props) => {
   
     return (
 
-        <Card  style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${img})` }} className="all-card">
+        <Card  onClick={()=>props.handleShowdes(id)} style={{cursor:"pointer" , backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${img})` }} className="all-card">
             <h1 className="footer">
                 {name}
-                <Button variant="outline-primary" onClick={()=>props.handleShowdes(id)}>click me</Button>
+                {/* <Button variant="outline-primary" onClick={()=>props.handleShowdes(id)}>click me</Button> */}
             </h1>
         </Card>
         

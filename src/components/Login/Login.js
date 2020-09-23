@@ -4,6 +4,8 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import {userContext} from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardHeader, MDBCol, MDBContainer, MDBIcon, MDBInput, MDBModalFooter, MDBRow } from 'mdbreact';
+
 
 firebase.initializeApp(firebaseConfig);
 function Login() {
@@ -34,7 +36,10 @@ function Login() {
         email:email ,
         photoUrl:photoURL
        }
-       setUser(signedInUser)
+       setUser(signedInUser);
+       setLoggedInUser(signedInUser);
+       history.replace(from);
+       
     })
  }
  const handleFbLogin=()=>{
@@ -42,15 +47,30 @@ function Login() {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
+        console.log(result);
+        const{displayName, email, photoURL}= result.user;
+       const signedInUser ={
+        isSignedIn: true,
+        name: displayName,
+        email:email
+       }
         var user = result.user;
-        // ...
-      }).catch(function(error) {
-        // Handle Errors here.
+        console.log(signedInUser);
+        setLoggedInUser(signedInUser);
+        history.replace(from);
+       // ...
+      }
+      
+
+      )
+      .catch(function(error) {
+        
         var errorCode = error.code;
         var errorMessage = error.message;
-        // The email of the user's account used.
+        setUser(errorMessage);
+        
         var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
+        
         var credential = error.credential;
         // ...
       });
@@ -136,45 +156,116 @@ const handleBlur = (e) => {
  }
 
   return (
-    <div className="App">
-      {
-      user.isSignedIn ?<button onClick={handleClickSignOut}>Sign Out</button>
-      :
-      <button onClick={handleClick}>Google Sign In</button>
-      }
-      <br/>
-      <button onClick={handleFbLogin}>Sign in Using Facebook</button>
-     {
-       user.isSignedIn &&<div>
-       <h1>Welcome, {user.name}</h1>
-       <p>Your email : {user.email}</p>
-       <img src={user.photoUrl} alt=""></img>
-       </div>
-     }
+    <div className="App" style={{ backgroundColor:"white" }}>
+     <MDBContainer>
+      <MDBRow>
+      <MDBCol md="3">
+        </MDBCol>
+        <MDBCol md="6">
+          <MDBCard>
+            <MDBCardBody className="mx-4">
+              <div className="text-center">
+                <h3 className="dark-grey-text mb-5">
+                  <strong> {newUser  ? "Sign Up":"Sign In"}</strong>
+                </h3>
+              </div>
+              <form onSubmit={handleSubmit}>
+                {
+                  newUser &&
+              <MDBInput
+                label="Your Name"
+                group
+                required
+                type="text"
+                name="name"
+                validate
+                onBlur={handleBlur}
+              />
+                }
+              <MDBInput
+                label="Your email"
+                group
+                required
+                type="email"
+                validate
+                onBlur={handleBlur} name="email"
+              />
+              <MDBInput
+                label="Your password"
+                group
+                required
+                type="password"
+                validate
+                onBlur={handleBlur} name="password"
+              />
+              <p className="font-small blue-text d-flex justify-content-end pb-3">
+                 {!newUser  && "Forgot  Password"}
+               
+              </p>
+              <div className="text-center mb-3">
+                <MDBBtn
+                  type="submit"
+                  gradient="blue"
+                  rounded
+                  className="btn-block z-depth-1a"
+                >
+                  {newUser  ? "Sign UP":"Sign In"}
+                </MDBBtn>
+                
+              </div>
+              </form>
+              <p style={{ color:'red' }}> {user.error}</p>
+                  {
+                    user.success && <p style={{ color:'green' }}>user {newUser ? "created" : "Sign In"} successfully</p>
+                  }
+              <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
+
+                or Sign in with:
+              </p>
+              <div className="row my-3 d-flex justify-content-center">
+                <MDBBtn
+                onClick={handleFbLogin}
+                  type="button"
+                  color="white"
+                  rounded
+                  className="mr-md-3 z-depth-1a"
+                >
+                  <MDBIcon  fab icon="facebook-f" className="blue-text text-center" />
+                </MDBBtn>
+                <MDBBtn
+                  type="button"
+                  color="white"
+                  rounded
+                  className="mr-md-3 z-depth-1a"
+                >
+                  <MDBIcon fab icon="twitter" className="blue-text" />
+                </MDBBtn>
+                <MDBBtn
+                  type="button"
+                  color="white"
+                  onClick={handleClick}
+                  rounded
+                  className="z-depth-1a"
+                >
+                  <MDBIcon  fab icon="google-plus-g" className="blue-text" />
+                </MDBBtn>
+              </div>
+            </MDBCardBody>
+            <MDBModalFooter className="mx-5 pt-3 mb-1">
+              <p className="font-small grey-text d-flex justify-content-end">
+                Not a member?
+                <a  className="blue-text ml-1" onClick={()=>setNewUser(!newUser)} name="newUser" >
+
+                {newUser  ? "Sign In":"Sign Up"}
+                </a>
+              </p>
+              
+            </MDBModalFooter>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
      
-    <br/><br/><br/>
-     <form onSubmit={handleSubmit}>
-       <input type="checkbox" onChange={()=>setNewUser(!newUser)} name="newUser" />
-       <label htmlFor="newUser">New User Sign Up</label>
-       <br/><br/><br/>
-       {
-         newUser && <input type="text" onBlur={handleBlur} name="name" placeholder="Name"/>
-       }
-     
-     <br/><br/>
-     <input type="text" onBlur={handleBlur} name="email" placeholder="Email address"/>
-     <br/> <br/>
-     <input type="password" onBlur={handleBlur} name="password" placeholder="input password"/>
-     <br/> <br/>
-     {
-       newUser  ?<input type="submit" value="Sign Up"/> : <input type="submit" value="Sign In"/>
-     }
-     
-     </form>
-      <p style={{ color:'red' }}> {user.error}</p>
-      {
-        user.success && <p style={{ color:'green' }}>user {newUser ? "created" : "Sign In"} successfully</p>
-      }
    </div>
   );
 }
