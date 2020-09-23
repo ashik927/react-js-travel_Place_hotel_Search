@@ -20,11 +20,9 @@ export const userContext = createContext();
 
 function App() {
   const [loggedInUser , setLoggedInUser]= useState({});
-  const [startDate , setStartDate]= useState({});
-  const [endDate , setEndDate]= useState({});
   return (
     <div style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${header})` }} className="header">
-      <userContext.Provider value={[loggedInUser , setLoggedInUser],[startDate , setStartDate],[endDate , setEndDate]}>
+      <userContext.Provider value={[loggedInUser , setLoggedInUser]}>
       <Router>
          
          <Switch>

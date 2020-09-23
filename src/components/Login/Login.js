@@ -193,6 +193,7 @@ const handleBlur = (e) => {
               <MDBInput
                 label="Your password"
                 group
+                minlength="7"
                 required
                 type="password"
                 validate
@@ -216,7 +217,7 @@ const handleBlur = (e) => {
               </form>
               <p style={{ color:'red' }}> {user.error}</p>
                   {
-                    user.success && <p style={{ color:'green' }}>user {newUser ? "created" : "Sign In"} successfully</p>
+                    user.success && <p style={{ color:'green' }}> {newUser ? "User created successfully" : ""} </p>
                   }
               <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
 
@@ -232,14 +233,7 @@ const handleBlur = (e) => {
                 >
                   <MDBIcon  fab icon="facebook-f" className="blue-text text-center" />
                 </MDBBtn>
-                <MDBBtn
-                  type="button"
-                  color="white"
-                  rounded
-                  className="mr-md-3 z-depth-1a"
-                >
-                  <MDBIcon fab icon="twitter" className="blue-text" />
-                </MDBBtn>
+                
                 <MDBBtn
                   type="button"
                   color="white"

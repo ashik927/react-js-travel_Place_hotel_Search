@@ -2,8 +2,10 @@ import React from 'react';
 
 const Nothing = () => {
     return (
-        <div>
-            <h1>failed to load</h1>
+        <div style={{ backgroundColor:"White" }}>
+           <div style={{ textAlign:"center",fontSize:"4rem"} }>
+                <h1>Failed to load , Please Give valid Url</h1>
+           </div>
         </div>
     );
 };

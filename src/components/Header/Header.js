@@ -42,17 +42,10 @@ const Header = () => {
                     <li>
                         <Link to="/contact">Contact</Link>
                     </li>
-                    {/* <li>
-                        <Link to="/">
-                        {
-                        loggedInUser.email || loggedInUser.name ? <p>Welcome {loggedInUser.name}</p>:""
-                        }
-                        </Link>
-                    </li> */}
                     
                     <li>
                         {
-                        loggedInUser.email || loggedInUser.name? <Button onClick={()=>setLoggedInUser({})} variant="outline-primary">Sign Out</Button>
+                        loggedInUser.email || loggedInUser.name? <Button onClick={()=>setLoggedInUser({})}  variant="outline-primary">Sign Out <br/> <span style={{ color:"orange" }}>{loggedInUser.name}</span></Button>
                          :<Button onClick={signIn} variant="outline-primary">Sign in</Button> 
                         }
                     </li>
@@ -61,8 +54,6 @@ const Header = () => {
                 </ul>
                
             </nav>
-                
-        
        
         </div>
     );
